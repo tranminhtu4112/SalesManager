@@ -1,0 +1,12 @@
+POST http://localhost:8080/themDoAnKem
+Content-Type: application/json
+
+{
+      "maDanhMucDoAn": 1,
+      "tenDoAn": "gà chiên giòn",
+      "donGia": 180000,
+      "donViTinh": "VND",
+      "soLuongTon": 50
+}
+###
+GET http://localhost:8080/danhMucDoAn

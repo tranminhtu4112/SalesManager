@@ -35,13 +35,13 @@ public class DanhMucDoAnRepo implements CrudRepository<DanhMucDoAnEntity>{
 
       @Override
       public DanhMucDoAnEntity findById(long id) {
-            // TODO Auto-generated method stub
-            return null;
+            String sql = "SELECT * FROM danh_muc_do_an where MA_DM_DO_AN = ?";
+            return jdbcTemplate.queryForObject(sql, new DanhMucDoAnMapper(), id);
       }
 
       @Override
       public List<DanhMucDoAnEntity> findAll() {
-            String sql = "SELECT * FROM sales_manager_db.danh_muc_do_an";
+            String sql = "SELECT * FROM danh_muc_do_an";
             return jdbcTemplate.query(sql, new DanhMucDoAnMapper());
       }
 

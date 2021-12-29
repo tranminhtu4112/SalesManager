@@ -18,6 +18,6 @@ public class DoAnKemEntity {
       private double donGia;
       private String donViTinh;
       private int soLuongTon;
-
+      private String hinhAnh;
       private DanhMucDoAnEntity danhMucDoAn;
 }

@@ -2,8 +2,6 @@ package com.SalesManager.repository;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import com.SalesManager.Entity.DoAnKemEntity;
 import com.SalesManager.RowMapper.DoAnKemMapper;
 

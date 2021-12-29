@@ -18,5 +18,6 @@ public class NuocUongEntity {
 	private double donGia;
 	private String donViTinh;
 	private int soLuongTon;
+	private String hinhAnh;
 	private DanhMucNuocUongEntity danhMucNuocUong;
 }

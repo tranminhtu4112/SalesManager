@@ -1,0 +1,52 @@
+package com.SalesManager.repository;
+
+import java.util.List;
+
+import com.SalesManager.Entity.KhachHangEntity;
+import com.SalesManager.RowMapper.KhachHangMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class KhachHangRepo implements CrudRepository<KhachHangEntity>{
+
+      @Autowired
+      private JdbcTemplate jdbcTemplate;
+
+      @Override
+      public int save(KhachHangEntity Object) {
+            // TODO Auto-generated method stub
+            return 0;
+      }
+
+      @Override
+      public int update(KhachHangEntity Object) {
+            // TODO Auto-generated method stub
+            return 0;
+      }
+
+      @Override
+      public int delete(long id) {
+            // TODO Auto-generated method stub
+            return 0;
+      }
+
+      @Override
+      public KhachHangEntity findById(long id) {
+            // TODO Auto-generated method stub
+            return null;
+      }
+
+      @Override
+      public List<KhachHangEntity> findAll() {
+            // TODO Auto-generated method stub
+            return null;
+      }
+      public List<KhachHangEntity> findByTenKhachHang(String soDienThoai) {
+            String sql = "SELECT * FROM khach_hang where SO_DIEN_THOAI like ?;";
+            return jdbcTemplate.query(sql, new KhachHangMapper(), soDienThoai + "%");
+      }
+
+}

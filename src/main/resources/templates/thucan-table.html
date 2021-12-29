@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+        content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>PIZZA FOOD</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{plugins/images/Pizza-logoo.png}">
+    <!-- Custom CSS -->
+    <link th:href="@{plugins/bower_components/chartist/dist/chartist.min.css}" rel="stylesheet">
+    <link rel="stylesheet"
+        th:href="@{plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css}">
+    <!-- Custom CSS -->
+    <link th:href="@{css/style.min.css}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <div th:insert="~{dashboard :: topbar}"></div>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <div th:insert="~{dashboard :: left-sidebar}"></div>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb bg-white">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Danh sách món ăn</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <div class="d-md-flex">
+                            <ol class="breadcrumb ms-auto">
+                                <li><a href="#" class="fw-normal"></a></li>
+                            </ol>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Thêm Thức Ăn</button>
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Thêm Thức Ăn</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="mb-3">
+                                                    <label for="recipient-name" class="col-form-label">Danh mục:</label>
+                                                    <select id="select-danhmuc" class="form-select form-control"
+                                                        aria-label=".form-select-sm example">
+
+                                                        <option selected>Chọn danh mục</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="recipient-name" class="col-form-label">Tên:</label>
+                                                    <input type="text" class="form-control" id="tenDoAn">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="recipient-name" class="col-form-label">Giá:
+                                                        <span id="price-f">0 đ</span>
+                                                    </label>
+                                                    <input type="text" class="form-control" id="donGia">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="recipient-name" class="col-form-label">Đơn vị:</label>
+                                                    <input type="text" class="form-control" id="donViTinh" value="VNĐ">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="recipient-name" class="col-form-label">Số lượng:</label>
+                                                    <input type="text" class="form-control" id="soLuongTon">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Hình ảnh mô tả</span>
+                                                    </div>
+                                                    <div class="custom-file">
+                                                        <label class="custom-file-label" for="inputGroupFile01">Chọn từ
+                                                            máy
+                                                            bạn</label>
+                                                        <input type="file" class="custom-file-input" accept="image/*"
+                                                            id="fileImage" onchange="loadFile1e(event)" name="img1e">
+                                                    </div>
+                                                    <div class="input-group mb-3 mt-3" style="margin-left: 145px;">
+                                                        <img class="img-thumbnail" id="output1e" width="500px"
+                                                            height="300px" />
+                                                    </div>
+                                                    <script>
+                                                        var loadFile1e = function (event) {
+                                                            var reader = new FileReader();
+                                                            reader.onload = function () {
+                                                                var output = document.getElementById('output1e');
+                                                                output.src = reader.result;
+                                                            };
+                                                            reader.readAsDataURL(event.target.files[0]);
+                                                        };
+                                                    </script>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Đóng</button>
+                                            <button type="button" id="btnThemDoAn" class="btn btn-primary" data-bs-dismiss="modal">Thêm</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <div class="table-responsive">
+                                <table class="table text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">Số thứ tự</th>
+                                            <th class="border-top-0">Danh mục</th>
+                                            <th class="border-top-0">Hình ảnh</th>
+                                            <th class="border-top-0">Tên Thức ăn</th>
+                                            <th class="border-top-0">Giá</th>
+                                            <th class="border-top-0">Đơn vị</th>
+                                            <th class="border-top-0">Số lượng</th>
+                                            <th class="border-top-0"></th>
+                                            <th class="border-top-0"></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-doankem">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Pizza</td>
+                                            <td>
+                                                <img class="hinh1" style="height: 50px;width: 50px;"
+                                                    src="https://cdn.tgdd.vn/Files/2020/04/21/1250680/cach-lam-banh-pizza-chay-bang-noi-chien-khong-dau-10.jpg"
+                                                    alt="">
+                                            </td>
+                                            <td>Pizza Phô mai</td>
+                                            <td>100000</td>
+                                            <td>VND</td>
+                                            <td>100</td>
+                                            <td><i class=" far fa-trash-alt"></i></td>
+                                            <td><i class=" far fa-edit"></i></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+
+                            <div class="d-md-flex">
+                                <h3 class="box-title">Danh mục món ăn</h3>
+                                <ol class="breadcrumb ms-auto">
+                                    <li><a href="#" class="fw-normal"></a></li>
+                                </ol>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop" data-bs-whatever="@getbootstrap">Thêm Danh
+                                    mục</button>
+
+                                <div class="modal fade" id="staticBackdrop" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Thêm Danh mục</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name" class="col-form-label">Tên danh
+                                                            mục:</label>
+                                                        <input type="text" class="form-control" id="recipient-name">
+                                                    </div>
+
+
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Đóng</button>
+                                                <button type="button" class="btn btn-primary">Thêm</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">Số thứ tự</th>
+                                            <th class="border-top-0">Tên danh mục</th>
+                                            <th class="border-top-0"></th>
+                                            <th class="border-top-0"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id = "table-danhmuc">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Nước có ga</td>
+                                            <td><i class=" far fa-trash-alt"> </i></td>
+                                            <td><i class=" far fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Nước có ga</td>
+                                            <td><i class=" far fa-trash-alt"> </i></td>
+                                            <td><i class=" far fa-edit"></i></td>
+                                        </tr>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
+                    href="https://www.wrappixel.com/">wrappixel.com</a>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script th:src="@{plugins/bower_components/jquery/dist/jquery.min.js}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script th:src="@{bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{js/app-style-switcher.js}"></script>
+    <!--Wave Effects -->
+    <script th:src="@{js/waves.js}"></script>
+    <!--Menu sidebar -->
+    <script th:src="@{js/sidebarmenu.js}"></script>
+    <!--Custom JavaScript -->
+    <script th:src="@{js/custom.js}"></script>
+
+    <script th:src="@{js/tata.js}"></script>
+
+    <script th:src="@{js/pages/thucan-table.js}"></script>
+
+</body>
+
+</html>

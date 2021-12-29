@@ -1,4 +1,6 @@
 package com.SalesManager.Entity;
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,8 @@ public class DoAnKemEntity {
       private double donGia;
       private String donViTinh;
       private int soLuongTon;
+      private String hinhAnh;
+      private MultipartFile fileImage;
 
       private DanhMucDoAnEntity danhMucDoAn;
 }

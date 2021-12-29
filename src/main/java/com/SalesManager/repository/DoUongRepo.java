@@ -56,5 +56,9 @@ public class DoUongRepo implements CrudRepository<NuocUongEntity>{
         String sql = "SELECT * FROM nuoc_uong";
         return jdbcTemplate.query(sql, new DoUongMapper());
     }
-    
+
+    public List<NuocUongEntity> findByTenDoUong(String tenNuocUong ) {
+        String sql = "SELECT * FROM nuoc_uong where TEN_NUOC_UONG like ?";
+        return jdbcTemplate.query(sql, new DoUongMapper(), tenNuocUong+ "%");
+    }
 }

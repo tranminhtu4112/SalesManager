@@ -12,9 +12,14 @@ import lombok.ToString;
 @ToString
 public class ChiTietGoiNuocEntity {
 
-      private long maPhieuDatHang;
+    private long maPhieuDatHang;
 	private long maNuoc;
 	private double dioGia;
 	private int soLuong;
-	private double thanhToan;
+	private double thanhTien;
+
+	
+	private PhieuDatHangEntity phieuDatHang;
+	private  NuocUongEntity nuocUongEntity;
 }
+

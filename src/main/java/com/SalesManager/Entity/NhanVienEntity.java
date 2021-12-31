@@ -13,10 +13,12 @@ import lombok.ToString;
 @ToString
 public class NhanVienEntity {
 
-      public long maNhanVien;
+    private long maNhanVien;
 	private String hoTen;
 	private String diaChi;
-	public String soDienThoai;
-	public String email;
-	public boolean gioiTinh;
+	private String soDienThoai;
+	private String email;
+	private int gioiTinh;
+	private String password;
+	private String hinhAnh;
 }

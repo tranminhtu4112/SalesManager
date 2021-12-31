@@ -2,8 +2,25 @@ const inputThucAn = document.querySelector("#input-thucan");
 const tableDoAnKemSearch = document.querySelector("#table-doankemsearch");
 const tableDoAnKemOrder = document.querySelector("#table-doankemorder");
 const url_search_thuc_an = "http://localhost:8080/doAnKemSearch?tenDoAnKem=";
-
+const sumpricetable = document.querySelector("#sum-price-table");
+const btndathang = document.querySelector("#btn-dathang");
+const tongtienthanhtoan = document.querySelector('#tongtienthanhtoan');
+/**
+ *   Order do an
+ */
 var doAnKemOrder = [];
+var doUongOrder = [];
+
+function sumPrice() {
+  var sum = 0;
+  doAnKemOrder.forEach((ele) => {
+    sum += ele.donGia;
+  });
+  doUongOrder.forEach((ele) => {
+    sum += ele.donGia;
+  });
+  return sum;
+}
 
 function formatPrice(params) {
   return new Intl.NumberFormat("vi-VN", {
@@ -50,10 +67,10 @@ function orderDoAn(maDoAn) {
     .then((resp) => resp.json())
     .then((data) => {
       doAnKemOrder.push(data);
-      renderDoAnKem();
+      renderTableOrder();
     });
 }
-function renderDoAnKem() {
+function renderTableOrder() {
   var tr = "",
     i = 0;
   doAnKemOrder.forEach((ele) => {
@@ -74,7 +91,36 @@ function renderDoAnKem() {
                   })"></i></td>
               </tr>`;
   });
+  doUongOrder.forEach((ele) => {
+    i++;
+    tr += `<tr>
+                  <td>${i}</td>
+                  <td>${ele.danhMucNuocUong.tenDanhMuc}</td>
+                  <td>
+                      <img class="hinh1" style="height: 50px;width: 50px;"
+                          src="${ele.hinhAnh}"
+                          alt="">
+                  </td>
+                  <td>${ele.tenNuocUong}</td>
+                  <td>${formatPrice(ele.donGia)}</td>
+                  <td>VNĐ</td>
+                  <td><i style="cursor: pointer;" class=" far fa-trash-alt" onClick="xoaDoUong(${
+                    ele.maNuoc
+                  })"></i></td>
+              </tr>`;
+  });
   tableDoAnKemOrder.innerHTML = tr;
+  sumpricetable.innerHTML = formatPrice(sumPrice());
+   tongtienthanhtoan.value = formatPrice(sumPrice());
+  if (sumPrice() == 0) {
+    btndathang.disabled = true;
+
+  } else {
+    btndathang.disabled = false;
+
+  }
+
+  sumPrice();
 }
 function xoaDoAnKem(maDoAn) {
   for (let index = 0; index < doAnKemOrder.length; index++) {
@@ -83,8 +129,66 @@ function xoaDoAnKem(maDoAn) {
       break;
     }
   }
-  renderDoAnKem();
+  renderTableOrder();
 }
+
+/**
+ *  Order do uong
+ */
+
+const tabledouongearch = document.querySelector("#table-douongearch");
+const inputdouong = document.querySelector("#input-douong");
+
+inputdouong.addEventListener("keyup", (event) => {
+  if (event.target.value == "") tabledouongearch.innerHTML = "";
+  else renderSeachDoUong(event.target.value);
+});
+
+function renderSeachDoUong(tenDoUong) {
+  fetch("http://localhost:8080/doUongSearch?tenDoUong=" + tenDoUong, {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      var tr = "";
+      data.forEach((ele) => {
+        tr += `<tr class="hover-item" style="cursor: pointer;" onClick="orderDoUong(${
+          ele.maNuoc
+        })">
+                  <td>
+                      <img style="height: 50px;width: 50px;"
+                          src="${ele.hinhAnh}"
+                          alt="">
+                  </td>
+                  <td>${ele.tenNuocUong}</td>
+                  <td>${formatPrice(ele.donGia)}</td>
+                  <td>VNĐ</td>
+              </tr>`;
+      });
+      if (tr == "") tabledouongearch.innerHTML = "Không tìm thấy kết quả";
+      else tabledouongearch.innerHTML = tr;
+    });
+}
+function orderDoUong(maNuoc) {
+  tabledouongearch.innerHTML = "";
+  inputdouong.value = "";
+  fetch(`http://localhost:8080/doUong/${maNuoc}`)
+    .then((res) => res.json())
+    .then((data) => {
+      doUongOrder.push(data);
+      renderTableOrder();
+    });
+}
+function xoaDoUong(maNuoc) {
+  for (let index = 0; index < doUongOrder.length; index++) {
+    if (doUongOrder[index].maNuoc == maNuoc) {
+      doUongOrder.splice(index, 1);
+      break;
+    }
+  }
+  renderTableOrder();
+}
+
 /**
  *   form thanh toán
  */
@@ -166,10 +270,10 @@ function renderKhachHangSearch(soDienThoai) {
     });
 }
 function chonKhacHang(maKhachHang) {
-  var khachHang = khachHangsSearch.filter(
+  khachHangChon = khachHangsSearch.filter(
     (ele) => ele.maKhachHang == maKhachHang
   )[0];
-  renderKhachHangForm(khachHang);
+  renderKhachHangForm(khachHangChon);
 }
 function renderKhachHangForm(khachHang) {
   tableKhachHanngSearch.innerHTML = "";
@@ -177,4 +281,17 @@ function renderKhachHangForm(khachHang) {
   emailKhanhHang.value = khachHang.email;
   diachikhachhang.value = khachHang.diaChi;
   sdtkhachhang.value = khachHang.soDienThoai;
+}
+
+function getMaDatHang() {
+  var date = new Date();
+  var dd = String(date.getDate()).padStart(2, "0");
+  var mm = String(date.getMonth() + 1).padStart(2, "0");
+  var yyyy = date.getFullYear();
+  var hh = date.getHours();
+  var min = date.getMinutes();
+  var ss = date.getSeconds();
+  var mls = date.getMilliseconds();
+  maDatHang = yyyy + mm + dd + hh + min + ss + mls;
+  return maDatHang;
 }

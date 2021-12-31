@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ThucAnTableController {
+public class ThanhToanPageController {
 
-      @GetMapping("/thucan")
-      public String thucAnController(){
-            return"thucan-table";
+      @GetMapping("/thanhtoan")
+      public String thanhtoanPage() {
+            return "thanhtoan";
       }
 }

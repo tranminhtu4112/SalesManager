@@ -106,34 +106,15 @@
                                 <div style="z-index: 1000;position: absolute; top: 0px; left: 0px;background: #edf1f5;width: 40% ; margin-left: 52.5%;box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;"
                                     class="card mt-5 pt-2 pr-2 pl-2">
                                     <h4 style=" text-align: center;">Đồ Uống</h4>
-                                    <div class="input-group mb-3"> <input type="text" class="form-control">
+                                    <div class="input-group mb-3"> <input type="text" class="form-control" id="input-douong" placeholder="Nhập tên đò uống ...">
                                         <div class="input-group-append"><button class="btn btn-primary"><i
                                                     class="fas fa-search"></i></button></div>
                                     </div>
 
                                     <div class="table-responsive">
                                         <table class="table text-nowrap">
-                                            <tbody>
-                                                <tr class="hover-item">
-                                                    <td>
-                                                        <img style="height: 50px;width: 50px;"
-                                                            src="https://cdn.tgdd.vn/Files/2020/04/21/1250680/cach-lam-banh-pizza-chay-bang-noi-chien-khong-dau-10.jpg"
-                                                            alt="">
-                                                    </td>
-                                                    <td>Pizza Phô mai</td>
-                                                    <td>100000</td>
-                                                    <td>VND</td>
-                                                </tr>
-                                                <tr class="hover-item">
-                                                    <td>
-                                                        <img style="height: 50px;width: 50px;"
-                                                            src="https://cdn.tgdd.vn/Files/2020/04/21/1250680/cach-lam-banh-pizza-chay-bang-noi-chien-khong-dau-10.jpg"
-                                                            alt="">
-                                                    </td>
-                                                    <td>Pizza Phô mai</td>
-                                                    <td>100000</td>
-                                                    <td>VND</td>
-                                                </tr>
+                                            <tbody id="table-douongearch">
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -166,17 +147,19 @@
                                 <ol style="margin-right: 20px;" class="breadcrumb ms-auto">
                                     <h4>Tổng tiền: </h4>
                                     <h4>
-                                        <div style="margin-left: 30px;" class="price">100000 VND</div>
+                                        <div id="sum-price-table" style="margin-left: 30px;" class="price">0 ₫</div>
                                     </h4>
                                 </ol>
-                                <button type=" button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">
+                                <button type="button" class="btn btn-primary"
+                                id = "btn-dathang" disabled
+                                data-bs-toggle="modal"
+                                    data-bs-target="#dathang" data-bs-whatever="@getbootstrap">
                                     <h4>Đặt hàng</h4>
                                 </button>
                             </div>
 
 
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            <div class="modal fade" id="dathang" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -205,7 +188,8 @@
                                                     <div class="col-md-6">
                                                         <label for="recipient-name" class="col-form-label">Số điện thoại
                                                             KH:</label>
-                                                        <input type="text" class="form-control" id="sdtkhachhang" autocomplete="off">
+                                                        <input type="text" class="form-control" id="sdtkhachhang"
+                                                            autocomplete="off">
                                                         <style>
                                                             .sdt-search {
                                                                 padding: 5px;
@@ -214,11 +198,13 @@
                                                                 width: 228px;
                                                                 background-color: #faf5f5;
                                                             }
+
                                                             .sdt-search:hover {
                                                                 background-color: #e9ecef;
                                                             }
                                                         </style>
-                                                        <div id = "table-khachhanngsearch" style="z-index: 1000;position: absolute;">
+                                                        <div id="table-khachhanngsearch"
+                                                            style="z-index: 1000;position: absolute;">
 
                                                         </div>
                                                     </div>
@@ -256,7 +242,7 @@
                                                     <div class="col-md-6">
                                                         <label for="recipient-name" class="col-form-label">Tổng
                                                             tiền:</label>
-                                                        <output type="text" class="form-control" id="tongtien">
+                                                        <input type="text" class="form-control" id="tongtienthanhtoan" disabled>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label for="recipient-name" class="col-form-label">Trạng
@@ -324,6 +310,7 @@
     <script th:src="@{js/waves.js}"></script>
     <script th:src="@{js/sidebarmenu.js}"></script>
     <script th:src="@{js/custom.js}"></script>
+    <script th:src="@{js/tata.js}"></script>>
     <script th:src="@{js/pages/thanhtoan.js}"></script>
 </body>
 

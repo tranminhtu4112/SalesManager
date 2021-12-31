@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 public class KhachHangEntity {
 
-      private long maKhachHang;
+    private long maKhachHang;
 	private String hoTen;
 	private String diaChi;
 	private String soDienThoai;

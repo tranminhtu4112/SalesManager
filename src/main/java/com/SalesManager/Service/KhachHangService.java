@@ -14,7 +14,15 @@ public class KhachHangService {
       @Autowired
       private KhachHangRepo khachHangRepo;
 
-      public List<KhachHangEntity> findByTenKhachHang(String soDienThoai){
+      public List<KhachHangEntity> findByTenKhachHang(String soDienThoai) {
             return khachHangRepo.findByTenKhachHang(soDienThoai);
       }
+
+      public int save(KhachHangEntity Object) {
+            return khachHangRepo.save(Object);
+      }
+      public List<KhachHangEntity> findAll() {
+            return khachHangRepo.findAll();
+      }
+
 }

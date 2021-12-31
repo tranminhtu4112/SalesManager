@@ -66,7 +66,7 @@ function renderDoAnKem() {
                 <td>${ele.tenDoAn}</td>
                 <td>${formatPrice(ele.donGia)}</td>
                 <td>VNĐ</td>
-                <td>${ele.tenDoAn}</td>
+                <td>${ele.soLuongTon}</td>
                 <td><i class=" far fa-trash-alt"> </i></td>
                 <td><i class=" far fa-edit"></i></td>
             </tr>`;

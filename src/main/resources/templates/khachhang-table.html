@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,7 @@
         <!-- Custom CSS -->
         <link href="css/style.min.css" rel="stylesheet">
     </head>
-    
+
     <body>
         <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
@@ -39,140 +39,15 @@
             <!-- ============================================================== -->
             <!-- Topbar header - style you can find in pages.scss -->
             <!-- ============================================================== -->
-            <header class="topbar" data-navbarbg="skin5">
-                <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                    <div class="navbar-header" data-logobg="skin6">
-                        <!-- ============================================================== -->
-                        <!-- Logo -->
-                        <!-- ============================================================== -->
-                        <a class="navbar-brand" href="dashboard.html">
-                            <!-- Logo icon -->
-                            <b class="logo-icon">
-                                <!-- Dark Logo icon -->
-                                <img src="plugins/images/Pizza-logo.png" alt="homepage" />
-                            </b>
-                            <!--End Logo icon -->
-                            <!-- Logo text -->
-                            <span class="logo-text">
-                                <!-- dark Logo text -->
-                                <img src="plugins/images/pizzafood.png" alt="homepage" />
-                            </span>
-                        </a>
-                        <!-- ============================================================== -->
-                        <!-- End Logo -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- toggle and nav items -->
-                        <!-- ============================================================== -->
-                        <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
-                            href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- End Logo -->
-                    <!-- ============================================================== -->
-                    <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                       
-                        <!-- ============================================================== -->
-                        <!-- Right side toggle and nav items -->
-                        <!-- ============================================================== -->
-                        <ul class="navbar-nav ms-auto d-flex align-items-center">
-    
-                            <!-- ============================================================== -->
-                            <!-- Search -->
-                            <!-- ============================================================== -->
-                            <li class=" in">
-                                <form role="search" class="app-search d-none d-md-block me-3">
-                                    <input type="text" placeholder="Search..." class="form-control mt-0">
-                                    <a href="" class="active">
-                                        <i class="fa fa-search"></i>
-                                    </a>
-                                </form>
-                            </li>
-                            <!-- ============================================================== -->
-                            <!-- User profile and search -->
-                            <!-- ============================================================== -->
-                            <li>
-                                <a class="profile-pic" href="#">
-                                    <img src="plugins/images/users/varun.jpg" alt="user-img" width="36"
-                                        class="img-circle"><span class="text-white font-medium">Steave</span></a>
-                            </li>
-                            <!-- ============================================================== -->
-                            <!-- User profile and search -->
-                            <!-- ============================================================== -->
-                        </ul>
-                    </div>
-                </nav>
-            </header>
+            <div th:insert="~{dashboard :: topbar}"></div>
             <!-- ============================================================== -->
             <!-- End Topbar header -->
             <!-- ============================================================== -->
             <!-- ============================================================== -->
             <!-- Left Sidebar - style you can find in sidebar.scss  -->
             <!-- ============================================================== -->
-            <aside class="left-sidebar" data-sidebarbg="skin6">
-                <!-- Sidebar scroll-->
-                <div class="scroll-sidebar">
-                    <!-- Sidebar navigation-->
-                    <nav class="sidebar-nav">
-                        <ul id="sidebarnav">
-                            <!-- User Profile-->
-                            <li class="sidebar-item pt-2">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
-                                    aria-expanded="false">
-                                    <i class="far fa-clock" aria-hidden="true"></i>
-                                    <span class="hide-menu">Trang chủ</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="thanhtoan.html"
-                                    aria-expanded="false">
-                                    <i class="fa fa-table" aria-hidden="true"></i>
-                                    <span class="hide-menu">Thanh toán</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html"
-                                    aria-expanded="false">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <span class="hide-menu">Cá nhân</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="nhanvien-table.html"
-                                    aria-expanded="false">
-                                    <i class="fas fa-address-card" aria-hidden="true"></i>
-                                    <span class="hide-menu">Nhân viên</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="khachhang-table.html"
-                                    aria-expanded="false">
-                                    <i class="fas fa-address-card" aria-hidden="true"></i>
-                                    <span class="hide-menu">Khách hàng</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="thucan-table.html"
-                                    aria-expanded="false">
-                                    <i class="fas fa-utensils" aria-hidden="true"></i>
-                                    <span class="hide-menu">Thức ăn</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="douong-table.html"
-                                    aria-expanded="false">
-                                    <i class=" fas fa-wine-glass" aria-hidden="true"></i>
-                                    <span class="hide-menu">Đồ uống</span>
-                                </a>
-                            </li>
-    
-                        </ul>
-    
-                    </nav>
-                    <!-- End Sidebar navigation -->
-                </div>
-                <!-- End Sidebar scroll-->
-            </aside>
+            <div th:insert="~{dashboard :: left-sidebar}"></div>
+
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
@@ -186,7 +61,7 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Danh sách nhân viên</h4>
+                        <h4 class="page-title">Danh sách khách hàng</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
@@ -194,48 +69,48 @@
                                 <li><a href="#" class="fw-normal"></a></li>
                             </ol>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Thêm Nhân Viên</button>
-    
+                                data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Thêm khách hàng</button>
+
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Thêm Thức Ăn</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Thêm khách hàng</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <form>
-    
+
                                                 <div class="mb-3">
                                                     <label for="recipient-name"
                                                         class="col-form-label">Họ và tên:</label>
-                                                    <input type="text" class="form-control" id="recipient-name">
+                                                    <input type="text" class="form-control" id="hotenkhachhang">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="recipient-name"
                                                         class="col-form-label">Dịa chỉ:</label>
-                                                    <input type="text" class="form-control" id="recipient-name">
+                                                    <input type="text" class="form-control" id="diachikhachhang">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="recipient-name"
                                                         class="col-form-label">Số điện thoại:</label>
-                                                    <input type="text" class="form-control" id="recipient-name">
+                                                    <input type="text" class="form-control" id="sdtkhachhang">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="recipient-name"
-                                                        class="col-form-label">Mail:</label>
-                                                    <input type="text" class="form-control" id="recipient-name">
+                                                        class="col-form-label">Email:</label>
+                                                    <input type="text" class="form-control" id="emailkhachhhang">
                                                 </div>
 
-    
+
                                             </form>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Đóng</button>
-                                            <button type="button" class="btn btn-primary">Thêm</button>
+                                            <button type="button" data-bs-dismiss="modal" class="btn btn-primary"  id='btn-themkhachahng'>Thêm</button>
                                         </div>
                                     </div>
                                 </div>
@@ -266,34 +141,12 @@
                                             <th class="border-top-0">Họ và tên</th>
                                             <th class="border-top-0">Địa chỉ</th>
                                             <th class="border-top-0">Số điện thoại</th>
-                                            <th class="border-top-0">Gmail</th>
+                                            <th class="border-top-0">Email</th>
                                             <th class="border-top-0"></th>
                                             <th class="border-top-0"></th>
-
-                                            
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Nguyễn Văn Lãm</td>
-                                            <td>Thủ Đức,TP Hồ Chí Minh</td>
-                                            <td>0868319103</td>
-                                            <td>lam@gmail.com</td>
-                                            <td><i class=" far fa-trash-alt"> </i></td>
-                                            <td><i class=" far fa-edit"></i></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Nguyễn Văn Lãm</td>
-                                            <td>Thủ Đức,TP Hồ Chí Minh</td>
-                                            <td>0868319103</td>
-                                            <td>lam@gmail.com</td>
-                                            <td><i class=" far fa-trash-alt"></i></td>
-                                            <td><i class=" far fa-edit"></i></td>
-
-                                        </tr>
+                                    <tbody id = 'table-khachhang'>
 
                                     </tbody>
                                 </table>
@@ -345,6 +198,10 @@
     <script src="js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.js"></script>
+
+    <script src="js/tata.js"></script>
+
+    <script th:src="@{js/pages/khachhang.js}"></script>
 </body>
 
 </html>

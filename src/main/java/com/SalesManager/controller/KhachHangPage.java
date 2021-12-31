@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class DashboardController {
+public class KhachHangPage {
 
-      @GetMapping(value = {"/home", "/"})
-      public String dashboardPage() {
-            return "dashboard";
-      }
+    @GetMapping("/khachhang-page")
+    public String khachHangGage (){
+        return "khachhang-table";
+    }
 }

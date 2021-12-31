@@ -4,7 +4,7 @@ const tableDoAnKemOrder = document.querySelector("#table-doankemorder");
 const url_search_thuc_an = "http://localhost:8080/doAnKemSearch?tenDoAnKem=";
 const sumpricetable = document.querySelector("#sum-price-table");
 const btndathang = document.querySelector("#btn-dathang");
-const tongtienthanhtoan = document.querySelector('#tongtienthanhtoan');
+const tongtienthanhtoan = document.querySelector("#tongtienthanhtoan");
 /**
  *   Order do an
  */
@@ -111,13 +111,11 @@ function renderTableOrder() {
   });
   tableDoAnKemOrder.innerHTML = tr;
   sumpricetable.innerHTML = formatPrice(sumPrice());
-   tongtienthanhtoan.value = formatPrice(sumPrice());
+  tongtienthanhtoan.value = formatPrice(sumPrice());
   if (sumPrice() == 0) {
     btndathang.disabled = true;
-
   } else {
     btndathang.disabled = false;
-
   }
 
   sumPrice();

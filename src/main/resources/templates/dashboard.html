@@ -283,11 +283,11 @@
                 <!-- RECENT SALES -->
                 <!-- ============================================================== -->
                 <div class="row">
-                    <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="col-md-6 col-lg-6 col-sm-6">
                         <div class="white-box">
                             <div class="d-md-flex mb-3">
-                                <h3 class="box-title mb-0">Hóa đơn</h3>
-                                <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
+                                <h3 class="box-title mb-0">Hóa đơn đã giao</h3>
+                                <div class="col-md-5 col-sm-4 col-xs-6 ms-auto">
                                     <div class="input-group mb-3">
                                         <input type="text" id="input-thucan" class="form-control"
                                             placeholder="Tìm kiếm...">
@@ -301,32 +301,64 @@
                                     <thead>
                                         <tr>
                                             <th class="border-top-0">Mã</th>
-                                            <th class="border-top-0">Họ và tên NV</th>
                                             <th class="border-top-0">Họ và tên KH</th>
                                             <th class="border-top-0">Số Điện thoại</th>
                                             <th class="border-top-0">Ngày đặt</th>
                                             <th class="border-top-0">Ngày giao</th>
                                             <th class="border-top-0">Tổng tiền</th>
-                                            <th class="border-top-0">Trạng thái</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td class="txt-oflo">Trần Minh Tú</td>
                                             <td class="txt-oflo">Nguyễn văn Lãm</td>
                                             <td><span class="text-success">0123456789</span></td>
                                             <td>1/1/2022</td>
                                             <td class="txt-oflo">1/1/2022</td>
                                             <td>100000</td>
-                                            <td style="width: 120px;">
-                                                <select class="form-select form-select-smt" aria-label=".form-select-sm example">
-                                                    <option value="1" selected>Đã giao</option>
 
-                                                    <option value="2">Chưa giao</option>
-                                                  </select>
-                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        <div class="white-box">
+                            <div class="d-md-flex mb-3">
+                                <h3 class="box-title mb-0">Hóa đơn chưa giao</h3>
+                                <div class="col-md-5 col-sm-4 col-xs-6 ms-auto">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="input-thucan" class="form-control"
+                                            placeholder="Tìm kiếm...">
+                                        <div class="input-group-append"><button class="btn btn-primary"><i
+                                                    class="fas fa-search"></i></button></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table no-wrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">Mã</th>
+                                            <th class="border-top-0">Họ và tên KH</th>
+                                            <th class="border-top-0">Số Điện thoại</th>
+                                            <th class="border-top-0">Ngày đặt</th>
+                                            <th class="border-top-0">Ngày giao</th>
+                                            <th class="border-top-0">Tổng tiền</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td class="txt-oflo">Nguyễn văn Lãm</td>
+                                            <td><span class="text-success">0123456789</span></td>
+                                            <td>1/1/2022</td>
+                                            <td class="txt-oflo">1/1/2022</td>
+                                            <td>100000</td>
                                         </tr>
 
                                     </tbody>

@@ -16,7 +16,7 @@ function formatPrice(params) {
   }
 
 function renderDanhMucNuoc() {
-  fetch("http://localhost:8080/danhMucDoUong", { method: "GET" })
+  fetch("http://localhost:8080/api/danhMucDoUong", { method: "GET" })
     .then((res) => res.json())
     .then((data) => {
       var options = "";
@@ -29,7 +29,7 @@ function renderDanhMucNuoc() {
 renderDanhMucNuoc();
 
 function rederTableDanhMucMuoc() {
-  fetch("http://localhost:8080/danhMucDoUong", { method: "GET" })
+  fetch("http://localhost:8080/api/danhMucDoUong", { method: "GET" })
     .then((res) => res.json())
     .then((data) => {
       var tr = "",
@@ -49,7 +49,7 @@ function rederTableDanhMucMuoc() {
 }
 rederTableDanhMucMuoc();
 
-const urlThemDoUong = "http://localhost:8080/doUong";
+const urlThemDoUong = "http://localhost:8080/api/doUong";
 
 btnthemdouong.addEventListener("click", () => {
   var img = fileImage.files[0];
@@ -76,7 +76,7 @@ btnthemdouong.addEventListener("click", () => {
 });
 
 function renderTableDoUong() {
-  fetch("http://localhost:8080/doUong", { method: "GET" })
+  fetch("http://localhost:8080/api/doUong", { method: "GET" })
     .then((res) => res.json())
     .then((data) => {
       var tr = "",

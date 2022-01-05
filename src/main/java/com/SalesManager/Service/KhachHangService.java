@@ -17,7 +17,9 @@ public class KhachHangService {
       public List<KhachHangEntity> findByTenKhachHang(String soDienThoai) {
             return khachHangRepo.findByTenKhachHang(soDienThoai);
       }
-
+      public KhachHangEntity findById(long id) {
+            return khachHangRepo.findById(id);
+      }
       public int save(KhachHangEntity Object) {
             return khachHangRepo.save(Object);
       }

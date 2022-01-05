@@ -5,7 +5,9 @@ import java.sql.SQLException;
 
 import com.SalesManager.Entity.NhanVienEntity;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class NhanVienMapper implements RowMapper<NhanVienEntity>{
 
@@ -22,5 +24,5 @@ public class NhanVienMapper implements RowMapper<NhanVienEntity>{
         nhanVienEntity.setHinhAnh(rs.getString(8));
         return nhanVienEntity;
     }
-    
+
 }

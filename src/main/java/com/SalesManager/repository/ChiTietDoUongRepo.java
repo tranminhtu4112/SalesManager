@@ -9,10 +9,12 @@ import com.SalesManager.RowMapper.ChiTietDoUongMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 @Repository
-public class ChiTietDoUongRepo implements CrudRepository<ChiTietGoiNuocEntity>{
+public class ChiTietDoUongRepo implements CrudRepository<ChiTietGoiNuocEntity> {
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
     @Override
     public int save(ChiTietGoiNuocEntity Object) {
         String sql = "INSERT INTO sales_manager_db.chi_tiet_goi_nuoc (MA_PHIEU_DH, MA_NUOC, DON_GIA, SO_LUONG, THANH_TIEN) VALUES (?, ?, ?, ?, ?)";
@@ -37,8 +39,13 @@ public class ChiTietDoUongRepo implements CrudRepository<ChiTietGoiNuocEntity>{
 
     @Override
     public ChiTietGoiNuocEntity findById(long id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public List<ChiTietGoiNuocEntity> findByMaPhieuDH(long maPhieuDatHhang) {
         String sql = "SELECT * FROM chi_tiet_goi_nuoc where MA_PHIEU_DH = ?";
-        return jdbcTemplate.queryForObject(sql, new ChiTietDoUongMapper(), id);
+        return jdbcTemplate.query(sql, new ChiTietDoUongMapper(), maPhieuDatHhang);
     }
 
     @Override
@@ -46,5 +53,5 @@ public class ChiTietDoUongRepo implements CrudRepository<ChiTietGoiNuocEntity>{
         // TODO Auto-generated method stub
         return null;
     }
-    
+
 }

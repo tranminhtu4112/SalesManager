@@ -10,7 +10,7 @@ function formatPrice(params) {
 document.querySelector("#donGia").addEventListener('keyup', (event) => {
   document.querySelector("#price-f").innerHTML = formatPrice(event.target.value)
 })
-const url = "http://localhost:8080/danhMucDoAn";
+const url = "http://localhost:8080/api/danhMucDoAn";
 
 const options = {
   method: "GET",
@@ -44,7 +44,7 @@ function renderDanhMuc() {
 renderDanhMuc();
 
 const tableDoankem = document.querySelector("#table-doankem");
-const urlDoAnKem = "http://localhost:8080/doAnKem";
+const urlDoAnKem = "http://localhost:8080/api/doAnKem";
 
 function renderDoAnKem() {
   fetch(urlDoAnKem, { method: "GET" })
@@ -78,7 +78,7 @@ renderDoAnKem();
 // =========== Them do an =============
 
 const btnThemDoAn = document.querySelector("#btnThemDoAn");
-const urlThemDoAn = "http://localhost:8080/doAnKem";
+const urlThemDoAn = "http://localhost:8080/api/doAnKem";
 
 btnThemDoAn.addEventListener("click", () => {
   var img = document.querySelector("#fileImage").files[0];

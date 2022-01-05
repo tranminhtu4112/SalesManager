@@ -74,30 +74,39 @@ $(function () {
 const soluongkhachhang = document.querySelector("#soluongkhachhang");
 const soluongdoan = document.querySelector("#soluongdoan");
 const soluongdouong = document.querySelector("#soluongdouong");
+const soLuongNhanVien = document.querySelector("#soLuongNhanVien");
 function renderAnalytist() {
-  fetch("http://localhost:8080/khachHang")
+  fetch("http://localhost:8080/api/nhanVien")
     .then((res) => {
       if (res.ok) return res.json();
       else throw new Error("Something went wrong");
     })
     .then((data) => {
-        soluongkhachhang.innerHTML = data.length;
+      soLuongNhanVien.innerHTML = data.length;
     });
-  fetch("http://localhost:8080/doAnKem")
+  fetch("http://localhost:8080/api/khachHang")
     .then((res) => {
       if (res.ok) return res.json();
       else throw new Error("Something went wrong");
     })
     .then((data) => {
-        soluongdoan.innerHTML = data.length;
+      soluongkhachhang.innerHTML = data.length;
     });
-  fetch("http://localhost:8080/doUong")
+  fetch("http://localhost:8080/api/doAnKem")
     .then((res) => {
       if (res.ok) return res.json();
       else throw new Error("Something went wrong");
     })
     .then((data) => {
-        soluongdouong.innerHTML = data.length;
+      soluongdoan.innerHTML = data.length;
+    });
+  fetch("http://localhost:8080/api/doUong")
+    .then((res) => {
+      if (res.ok) return res.json();
+      else throw new Error("Something went wrong");
+    })
+    .then((data) => {
+      soluongdouong.innerHTML = data.length;
     });
 }
 renderAnalytist();

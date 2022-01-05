@@ -5,7 +5,7 @@ CREATE TABLE `KHACH_HANG` (
 MA_KH bigint NOT NULL AUTO_INCREMENT,
 HO_TEN nvarchar(50),
 DIA_CHI Nvarchar(100),
-SO_DIEN_THOAI  Varchar(11),
+SO_DIEN_THOAI  Varchar(11) unique NOT NULL,
 EMAIL Varchar(50),
 PRIMARY KEY (MA_KH)
 );
@@ -14,9 +14,9 @@ CREATE TABLE `NHAN_VIEN`  (
 MA_NV bigint NOT NULL AUTO_INCREMENT,
 HO_TEN nvarchar(50),
 DIA_CHI Nvarchar(100),
-SO_DIEN_THOAI  Varchar(11) unique,
+SO_DIEN_THOAI  Varchar(11) unique NOT NULL,
 EMAIL Varchar(50),
-GIOI_TINH bit,
+GIOI_TINH int,
 `PASSWORD` varchar(256),
 HINHANH varchar(500), 
 PRIMARY KEY (MA_NV)
@@ -28,7 +28,7 @@ MA_NV bigint,
 NGAY_GIO_DAT datetime,
 NGAY_GIO_GIAO datetime,
 TONG_TIEN double,
-TRANG_THAI bit,
+TRANG_THAI int,
 PRIMARY KEY (MA_PHIEU_DH)
 );
 

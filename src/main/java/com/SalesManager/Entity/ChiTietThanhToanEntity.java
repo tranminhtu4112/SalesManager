@@ -15,7 +15,7 @@ import lombok.ToString;
 @ToString
 public class ChiTietThanhToanEntity {
 
-      private long maKhachHang;
+    private long maKhachHang;
 	private long maPhieuDatHang;
 	private Date thoiDiemThanhToan;
 

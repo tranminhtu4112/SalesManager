@@ -1,6 +1,6 @@
 package com.SalesManager.controller.api;
 
-import com.SalesManager.repository.DanhMucDoAnRepo;
+import com.SalesManager.Service.NhanVienService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/api")
 @RestController
-public class DanhMucDoAnController {
+@RequestMapping("/api")
+public class NhanVienController {
 
-      @Autowired
-      private DanhMucDoAnRepo danhMucDoAnRepo;
+    @Autowired
+    private NhanVienService nhanVienService;
 
-      @GetMapping("/danhMucDoAn")
-      public ResponseEntity<?> findAll() {
-            return ResponseEntity.ok(danhMucDoAnRepo.findAll());
-      }
+    @GetMapping("/nhanVien")
+    public ResponseEntity<?> findAll() {
+        return ResponseEntity.ok(nhanVienService.findAll());
+    }
 }

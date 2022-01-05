@@ -1,7 +1,8 @@
 const inputThucAn = document.querySelector("#input-thucan");
 const tableDoAnKemSearch = document.querySelector("#table-doankemsearch");
 const tableDoAnKemOrder = document.querySelector("#table-doankemorder");
-const url_search_thuc_an = "http://localhost:8080/doAnKemSearch?tenDoAnKem=";
+const url_search_thuc_an =
+  "http://localhost:8080/api/doAnKemSearch?tenDoAnKem=";
 const sumpricetable = document.querySelector("#sum-price-table");
 const btndathang = document.querySelector("#btn-dathang");
 const tongtienthanhtoan = document.querySelector("#tongtienthanhtoan");
@@ -63,7 +64,7 @@ function renderSeachDoAn(tenDoAnKem) {
 function orderDoAn(maDoAn) {
   tableDoAnKemSearch.innerHTML = "";
   inputThucAn.value = "";
-  fetch("http://localhost:8080/doAnKem/" + maDoAn, { method: "GET" })
+  fetch("http://localhost:8080/api/doAnKem/" + maDoAn, { method: "GET" })
     .then((resp) => resp.json())
     .then((data) => {
       doAnKemOrder.push(data);
@@ -143,7 +144,7 @@ inputdouong.addEventListener("keyup", (event) => {
 });
 
 function renderSeachDoUong(tenDoUong) {
-  fetch("http://localhost:8080/doUongSearch?tenDoUong=" + tenDoUong, {
+  fetch("http://localhost:8080/api/doUongSearch?tenDoUong=" + tenDoUong, {
     method: "GET",
   })
     .then((res) => res.json())
@@ -170,7 +171,7 @@ function renderSeachDoUong(tenDoUong) {
 function orderDoUong(maNuoc) {
   tabledouongearch.innerHTML = "";
   inputdouong.value = "";
-  fetch(`http://localhost:8080/doUong/${maNuoc}`)
+  fetch(`http://localhost:8080/api/doUong/${maNuoc}`)
     .then((res) => res.json())
     .then((data) => {
       doUongOrder.push(data);
@@ -202,6 +203,7 @@ const ngaydat = document.querySelector("#ngaydat");
 const ngaygiao = document.querySelector("#ngaygiao");
 const tongtien = document.querySelector("#tongtien");
 const trangthai = document.querySelector("#trangthai");
+const btnthanhtoan = document.querySelector("#btn-thanhtoan");
 
 let isNewKhachHang = false;
 
@@ -247,7 +249,7 @@ var khachHangsSearch = null;
 var khachHangChon = null;
 
 const url_search_khach_hang =
-  "http://localhost:8080/khachHangSearch?soDienThoai=";
+  "http://localhost:8080/api/khachHangSearch?soDienThoai=";
 
 sdtkhachhang.addEventListener("keyup", (event) => {
   if (event.target.value == "") tableKhachHanngSearch.innerHTML = "";
@@ -262,12 +264,12 @@ function renderKhachHangSearch(soDienThoai) {
     .then((data) => {
       khachHangsSearch = data;
       data.forEach((ele) => {
-        tr += `<div style="cursor: pointer;" class="sdt-search" onClick="chonKhacHang(${ele.maKhachHang})">${ele.hoTen} - ${ele.soDienThoai}</div>`;
+        tr += `<div style="cursor: pointer;" class="sdt-search" onClick="chonKhachHang(${ele.maKhachHang})">${ele.hoTen} - ${ele.soDienThoai}</div>`;
       });
       tableKhachHanngSearch.innerHTML = tr;
     });
 }
-function chonKhacHang(maKhachHang) {
+function chonKhachHang(maKhachHang) {
   khachHangChon = khachHangsSearch.filter(
     (ele) => ele.maKhachHang == maKhachHang
   )[0];
@@ -293,3 +295,50 @@ function getMaDatHang() {
   maDatHang = yyyy + mm + dd + hh + min + ss + mls;
   return maDatHang;
 }
+
+btnthanhtoan.addEventListener("click", () => {
+  var itemOrder = {
+    listDoAnKem: doAnKemOrder,
+    listDoUong: doUongOrder,
+    maNhanVien: manhanvien.value,
+    ngayDat: ngaydat.value,
+    ngayGiao: ngaygiao.value,
+    tongTien: sumPrice(),
+    trangThai: trangthai.value,
+    isNewKhachHang: isNewKhachHang,
+    khachHang: {
+      maKhachHang: -1,
+      hoTen: hoTenKhachHang.value,
+      email: emailKhanhHang.value,
+      diaChi: diachikhachhang.value,
+      soDienThoai: sdtkhachhang.value,
+    },
+  };
+  //console.log(itemOrder)
+  fetch(
+    "http://localhost:8080/api/thanhtoan?" +
+      new URLSearchParams({
+        maDatHang: getMaDatHang(),
+      }),
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(itemOrder),
+    }
+  )
+    .then((res) => {
+      if (res.status === 200) {
+        return;
+      } else {
+        throw new Error("Something went wrong");
+      }
+    })
+    .then((data) => {
+      return tata.success("Đặt hàng thành công", "Hãy kiểm tra đơn hàng");
+    })
+    .catch((err) => {
+      return tata.error("Đặt hàng thất bại", "Vui lòng kiểm tra lại");
+    });
+});

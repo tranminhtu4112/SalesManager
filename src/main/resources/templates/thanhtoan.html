@@ -106,7 +106,8 @@
                                 <div style="z-index: 1000;position: absolute; top: 0px; left: 0px;background: #edf1f5;width: 40% ; margin-left: 52.5%;box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;"
                                     class="card mt-5 pt-2 pr-2 pl-2">
                                     <h4 style=" text-align: center;">Đồ Uống</h4>
-                                    <div class="input-group mb-3"> <input type="text" class="form-control" id="input-douong" placeholder="Nhập tên đò uống ...">
+                                    <div class="input-group mb-3"> <input type="text" class="form-control"
+                                            id="input-douong" placeholder="Nhập tên đò uống ...">
                                         <div class="input-group-append"><button class="btn btn-primary"><i
                                                     class="fas fa-search"></i></button></div>
                                     </div>
@@ -150,10 +151,8 @@
                                         <div id="sum-price-table" style="margin-left: 30px;" class="price">0 ₫</div>
                                     </h4>
                                 </ol>
-                                <button type="button" class="btn btn-primary"
-                                id = "btn-dathang" disabled
-                                data-bs-toggle="modal"
-                                    data-bs-target="#dathang" data-bs-whatever="@getbootstrap">
+                                <button type="button" class="btn btn-primary" id="btn-dathang" disabled
+                                    data-bs-toggle="modal" data-bs-target="#dathang" data-bs-whatever="@getbootstrap">
                                     <h4>Đặt hàng</h4>
                                 </button>
                             </div>
@@ -189,7 +188,7 @@
                                                         <label for="recipient-name" class="col-form-label">Số điện thoại
                                                             KH:</label>
                                                         <input type="text" class="form-control" id="sdtkhachhang"
-                                                            autocomplete="off">
+                                                            autocomplete="off" required>
                                                         <style>
                                                             .sdt-search {
                                                                 padding: 5px;
@@ -213,7 +212,7 @@
                                                     <div class="col-md-6">
                                                         <label for="recipient-name" class="col-form-label">Họ và tên
                                                             KH:</label>
-                                                        <input type="text" class="form-control" id="hotenkhachhang">
+                                                        <input type="text" class="form-control" id="hotenkhachhang" required>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label for="recipient-name"
@@ -242,14 +241,14 @@
                                                     <div class="col-md-6">
                                                         <label for="recipient-name" class="col-form-label">Tổng
                                                             tiền:</label>
-                                                        <input type="text" class="form-control" id="tongtienthanhtoan" disabled>
+                                                        <input type="text" class="form-control" id="tongtienthanhtoan"
+                                                            disabled>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label for="recipient-name" class="col-form-label">Trạng
                                                             thái:</label>
                                                         <select id="trangthai" class="form-select form-control"
                                                             aria-label=".form-select-sm example">
-                                                            <option selected>Chọn trạng thái</option>
                                                             <option value="0">Chưa thanh toán</option>
                                                             <option value="1">Đã thanh toán</option>
                                                         </select>
@@ -261,7 +260,8 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Thanh toán</button>
+                                            <button data-bs-dismiss="modal" id="btn-thanhtoan" type="button"
+                                                class="btn btn-primary">Thanh toán</button>
                                         </div>
                                     </div>
                                 </div>
@@ -287,8 +287,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
-                    href="https://www.wrappixel.com/">wrappixel.com</a>
+            <footer class="footer text-center"> HUTECH - KHOA CÔNG NGHỆ THÔNG TIN</a>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->

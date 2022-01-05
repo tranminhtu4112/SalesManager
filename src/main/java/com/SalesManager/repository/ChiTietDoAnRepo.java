@@ -9,8 +9,9 @@ import com.SalesManager.RowMapper.ChiTietDoAnMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 @Repository
-public class ChiTietDoAnRepo implements CrudRepository<ChiTietDoAnEntity>{
+public class ChiTietDoAnRepo implements CrudRepository<ChiTietDoAnEntity> {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -38,8 +39,13 @@ public class ChiTietDoAnRepo implements CrudRepository<ChiTietDoAnEntity>{
 
     @Override
     public ChiTietDoAnEntity findById(long id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public List<ChiTietDoAnEntity> findByMaPhieuDH(long maPhieuDatHang) {
         String sql = "SELECT * FROM chi_tiet_do_an where MA_PHIEU_DH = ?";
-        return jdbcTemplate.queryForObject(sql, new ChiTietDoAnMapper(), id);
+        return jdbcTemplate.query(sql, new ChiTietDoAnMapper(), maPhieuDatHang);
     }
 
     @Override
@@ -47,5 +53,5 @@ public class ChiTietDoAnRepo implements CrudRepository<ChiTietDoAnEntity>{
         // TODO Auto-generated method stub
         return null;
     }
-    
+
 }

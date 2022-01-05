@@ -6,7 +6,7 @@ const emailkhachhhang = document.querySelector("#emailkhachhhang");
 const btnthemkhachahng = document.querySelector("#btn-themkhachahng");
 
 function renderTableKhachHang() {
-  fetch("http://localhost:8080/khachHang")
+  fetch("http://localhost:8080/api/khachHang")
     .then((res) => {
       if (res.ok) return res.json();
       else console.log("error fetch khachhang");
@@ -44,7 +44,7 @@ btnthemkhachahng.addEventListener("click", () => {
     body: form,
   };
 
-  fetch("http://localhost:8080/khachHang", optionsThemKhachHang).then((resp) => {
+  fetch("http://localhost:8080/api/khachHang", optionsThemKhachHang).then((resp) => {
     if (resp.status === 200) {
       tata.success("Thêm thành công", "Đã cập nhật");
       renderTableKhachHang();

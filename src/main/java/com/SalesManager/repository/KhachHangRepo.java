@@ -39,8 +39,8 @@ public class KhachHangRepo implements CrudRepository<KhachHangEntity> {
 
     @Override
     public KhachHangEntity findById(long id) {
-        // TODO Auto-generated method stub
-        return null;
+        String sql = "SELECT * FROM khach_hang where MA_KH = ?";
+        return jdbcTemplate.queryForObject(sql, new KhachHangMapper(), id);
     }
 
     @Override

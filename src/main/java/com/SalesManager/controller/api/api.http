@@ -15,4 +15,7 @@ GET http://localhost:8080/doAnKem/8
 GET http://localhost:8080/danhMucDoAn
 
 ### Get all don hang
-GET http://localhost:8080/api/donHang
+GET http://localhost:8080/api/donHangs/202201061074680
+
+### update status
+POST http://localhost:8080/api/donhang/trangthai?maPhieuDatHang=202201061074680&status=0

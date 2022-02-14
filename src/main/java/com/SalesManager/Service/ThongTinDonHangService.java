@@ -27,7 +27,6 @@ public class ThongTinDonHangService {
     public List<ThongTinDonHangMap> findAll() {
 
         List<ThongTinDonHangMap> lsThongTinDonHang = new ArrayList<>();
-
         List<PhieuDatHangEntity> lsPDH = phieuDatHangService.findAll();
         for (PhieuDatHangEntity pdh : lsPDH) {
             ThongTinDonHangMap ttdh = new ThongTinDonHangMap();
@@ -39,14 +38,12 @@ public class ThongTinDonHangService {
             ttdh.setChiTietGoiNuoc(chiTietDoUongService.findByMaPhieuDH(pdh.getMaPhieuDatHang()));
             lsThongTinDonHang.add(ttdh);
         }
-
         return lsThongTinDonHang;
     }
 
     public ThongTinDonHangMap findByMaDH(long maDatHang) {
 
         PhieuDatHangEntity pdh = phieuDatHangService.findById(maDatHang);
-
         ThongTinDonHangMap ttdh = new ThongTinDonHangMap();
         ttdh.setPhieuDatHang(pdh);
         ChiTietThanhToanEntity cttt = chiTietThanhToanService.findByMaPhieuDH(pdh.getMaPhieuDatHang());
@@ -54,7 +51,23 @@ public class ThongTinDonHangService {
         ttdh.setKhachHang(khachHangService.findById(cttt.getMaKhachHang()));
         ttdh.setChiTietDoAn(chiTietDoAnService.findByMaPhieuDH(pdh.getMaPhieuDatHang()));
         ttdh.setChiTietGoiNuoc(chiTietDoUongService.findByMaPhieuDH(pdh.getMaPhieuDatHang()));
-
         return ttdh;
+    }
+
+    public List<ThongTinDonHangMap> findByStatus(int status) {
+
+        List<ThongTinDonHangMap> lsThongTinDonHang = new ArrayList<>();
+        List<PhieuDatHangEntity> lsPDH = phieuDatHangService.findByStatus(status);
+        for (PhieuDatHangEntity pdh : lsPDH) {
+            ThongTinDonHangMap ttdh = new ThongTinDonHangMap();
+            ttdh.setPhieuDatHang(pdh);
+            ChiTietThanhToanEntity cttt = chiTietThanhToanService.findByMaPhieuDH(pdh.getMaPhieuDatHang());
+            ttdh.setChiTietThanhToan(cttt);
+            ttdh.setKhachHang(khachHangService.findById(cttt.getMaKhachHang()));
+            ttdh.setChiTietDoAn(chiTietDoAnService.findByMaPhieuDH(pdh.getMaPhieuDatHang()));
+            ttdh.setChiTietGoiNuoc(chiTietDoUongService.findByMaPhieuDH(pdh.getMaPhieuDatHang()));
+            lsThongTinDonHang.add(ttdh);
+        }
+        return lsThongTinDonHang;
     }
 }

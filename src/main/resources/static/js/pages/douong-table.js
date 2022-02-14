@@ -9,11 +9,11 @@ const tabledouong = document.querySelector("#table-douong");
 const tabledanhmucnuoc = document.querySelector("#table-danhmucnuoc");
 
 function formatPrice(params) {
-    return new Intl.NumberFormat("vi-VN", {
-      style: "currency",
-      currency: "VND",
-    }).format(params);
-  }
+  return new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  }).format(params);
+}
 
 function renderDanhMucNuoc() {
   fetch("http://localhost:8080/api/danhMucDoUong", { method: "GET" })
@@ -103,3 +103,32 @@ function renderTableDoUong() {
     });
 }
 renderTableDoUong();
+
+/**
+ * Thêm danh mục đồ uống
+ */
+
+const tenDanhMucDoUong = document.querySelector("#tenDanhMucDoUong");
+const btnthemdanhmucdouong = document.querySelector("#btn-themdanhmucdouong");
+
+btnthemdanhmucdouong.addEventListener("click", () => {
+  fetch(
+    "http://localhost:8080/api/danhMucDoUong?" +
+      new URLSearchParams({ tenDanhMucDoUong: tenDanhMucDoUong.value }),
+    {
+      method: "POST",
+    }
+  )
+    .then((res) => {
+      if (res.ok) return res.json();
+      else throw new Error("error");
+    })
+    .then((data) => {
+      rederTableDanhMucMuoc();
+      tata.success("Thêm thành công", "Đã cập nhật");
+    })
+    .catch((error) => {
+      tata.error("Thêm thất bại", "Vui lòng kiểm tra lại");
+      console.log(error);
+    });
+});

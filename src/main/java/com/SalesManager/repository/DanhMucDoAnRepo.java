@@ -17,8 +17,8 @@ public class DanhMucDoAnRepo implements CrudRepository<DanhMucDoAnEntity>{
 
       @Override
       public int save(DanhMucDoAnEntity Object) {
-            // TODO Auto-generated method stub
-            return 0;
+            String sql = "INSERT INTO danh_muc_do_an (TEN_DM) VALUES (?)";
+            return jdbcTemplate.update(sql, Object.getTenDanhMuc());
       }
 
       @Override

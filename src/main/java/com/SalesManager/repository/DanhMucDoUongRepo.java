@@ -12,10 +12,11 @@ import org.springframework.stereotype.Repository;
 public class DanhMucDoUongRepo implements CrudRepository<DanhMucNuocUongEntity>{
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
     @Override
     public int save(DanhMucNuocUongEntity Object) {
-        // TODO Auto-generated method stub
-        return 0;
+        String sql ="INSERT INTO danh_muc_nuoc_uong (TEN_DM) VALUES (?)";
+        return jdbcTemplate.update(sql, Object.getTenDanhMuc());
     }
 
     public JdbcTemplate getJdbcTemplate() {

@@ -18,8 +18,8 @@ public class ChiTietGoiNuocEntity {
 	private int soLuong;
 	private double thanhTien;
 
-	
+
 	private PhieuDatHangEntity phieuDatHang;
-	private  NuocUongEntity nuocUongEntity;
+	private  NuocUongEntity nuocUong;
 }
 

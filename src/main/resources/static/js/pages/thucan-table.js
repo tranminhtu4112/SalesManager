@@ -7,9 +7,11 @@ function formatPrice(params) {
     currency: "VND",
   }).format(params);
 }
-document.querySelector("#donGia").addEventListener('keyup', (event) => {
-  document.querySelector("#price-f").innerHTML = formatPrice(event.target.value)
-})
+document.querySelector("#donGia").addEventListener("keyup", (event) => {
+  document.querySelector("#price-f").innerHTML = formatPrice(
+    event.target.value
+  );
+});
 const url = "http://localhost:8080/api/danhMucDoAn";
 
 const options = {
@@ -102,4 +104,32 @@ btnThemDoAn.addEventListener("click", () => {
       renderDoAnKem();
     } else tata.error("Thêm thất bại", "Vui lòng kiểm tra lại");
   });
+});
+
+/**
+ *  Thêm danh mục đồ ăn
+ */
+const tenDanhMucDoAn = document.querySelector("#tenDanhMucDoAn");
+const btnthemdanhmuc = document.querySelector("#btn-themdanhmuc");
+
+btnthemdanhmuc.addEventListener("click", () => {
+  fetch(
+    "http://localhost:8080/api/danhMucDoAn?" +
+      new URLSearchParams({ tenDanhMucDoAn: tenDanhMucDoAn.value }),
+    {
+      method: "POST",
+    }
+  )
+    .then((res) => {
+      if (res.ok) return res.json();
+      else throw new Error("error");
+    })
+    .then((data) => {
+      renderDanhMuc();
+      tata.success("Thêm thành công", "Đã cập nhật");
+    })
+    .catch((error) => {
+      tata.error("Thêm thất bại", "Vui lòng kiểm tra lại");
+      console.log(error);
+    });
 });

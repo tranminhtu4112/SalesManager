@@ -13,11 +13,16 @@ public class ChiTietDoUongService {
 
     @Autowired
     private ChiTietDoUongRepo chiTietDoUongRepo;
+    @Autowired
+    private DoUongService doUongService;
 
     public int save(ChiTietGoiNuocEntity Object) {
         return chiTietDoUongRepo.save(Object);
     }
     public List<ChiTietGoiNuocEntity> findByMaPhieuDH(long maPhieuDatHhang) {
-        return chiTietDoUongRepo.findByMaPhieuDH(maPhieuDatHhang);
+        List<ChiTietGoiNuocEntity> lsCtgn =  chiTietDoUongRepo.findByMaPhieuDH(maPhieuDatHhang);
+        for (int i = 0; i < lsCtgn.size(); i++)
+        lsCtgn.get(i).setNuocUong(doUongService.findById(lsCtgn.get(i).getMaNuoc()));
+        return lsCtgn;
     }
 }

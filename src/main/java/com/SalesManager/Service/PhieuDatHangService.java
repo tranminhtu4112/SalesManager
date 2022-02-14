@@ -28,4 +28,8 @@ public class PhieuDatHangService {
     public List<PhieuDatHangEntity> findByStatus(int status) {
         return phieuDatHangRepo.findByStatus(status);
     }
+
+    public int updateStatus(long maPhieuDatHang, int status) {
+        return phieuDatHangRepo.updateStatus(maPhieuDatHang, status);
+    }
 }

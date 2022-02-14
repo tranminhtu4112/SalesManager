@@ -52,13 +52,18 @@ public class PhieuDatHangRepo implements CrudRepository<PhieuDatHangEntity> {
 
     @Override
     public List<PhieuDatHangEntity> findAll() {
-       String sql = "SELECT * FROM phieu_dat_hang";
+        String sql = "SELECT * FROM phieu_dat_hang";
         return jdbcTemplate.query(sql, new PhieuDatHangMapper());
     }
 
     public List<PhieuDatHangEntity> findByStatus(int status) {
         String sql = "SELECT * FROM phieu_dat_hang where TRANG_THAI = ?";
-         return jdbcTemplate.query(sql, new PhieuDatHangMapper(), status);
-     }
+        return jdbcTemplate.query(sql, new PhieuDatHangMapper(), status);
+    }
+
+    public int updateStatus(long maPhieuDatHang, int status) {
+        String sql = "UPDATE phieu_dat_hang SET TRANG_THAI = ? WHERE (MA_PHIEU_DH = ?)";
+        return jdbcTemplate.update(sql, status, maPhieuDatHang);
+    }
 
 }

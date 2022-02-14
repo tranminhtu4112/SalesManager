@@ -2,6 +2,7 @@ package com.SalesManager.Service;
 
 import java.util.List;
 
+import com.SalesManager.Entity.DanhMucDoAnEntity;
 import com.SalesManager.Entity.DoAnKemEntity;
 import com.SalesManager.repository.DanhMucDoAnRepo;
 import com.SalesManager.repository.DoAnKemRepo;
@@ -17,6 +18,9 @@ public class DoAnKemService {
       @Autowired
       private DanhMucDoAnRepo danhMucDoAnRepo;
 
+      public int save(DanhMucDoAnEntity Object) {
+            return danhMucDoAnRepo.save(Object);
+      }
       public List<DoAnKemEntity> findAll() {
             List<DoAnKemEntity> listDoAnKem = doAnKemRepo.findAll();
             for (int i = 0; i < listDoAnKem.size(); i++)

@@ -17,7 +17,8 @@
     <link rel="icon" type="image/png" sizes="16x16" th:href="@{plugins/images/Pizza-logoo.png}">
     <!-- Custom CSS -->
     <link th:href="@{plugins/bower_components/chartist/dist/chartist.min.css}" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css}">
+    <link rel="stylesheet"
+        th:href="@{plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css}">
     <!-- Custom CSS -->
     <link th:href="@{css/style.min.css}" rel="stylesheet">
 </head>
@@ -72,7 +73,53 @@
                 <!-- End Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-
+                    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+                    <style>
+                        .clock {
+                            position: absolute;
+                            top: 50%;
+                            left: 54%;
+                            transform: translateX(-50%) translateY(-50%);
+                            color:  #17D4FE;
+                            font-size: 20px;
+                            font-family: Orbitron;
+                            letter-spacing: 7px;
+                        }
+                    </style>
+                    <script>
+                        function showTime() {
+                            var today = new Date();
+                            var day = today.getDate();
+                            var month = today.getMonth() + 1;
+                            var year = today.getFullYear();
+                            if (day < 10) {
+                                day = '0' + day
+                            }
+                            if (month < 10) {
+                                month = '0' + month
+                            }
+                            var date = new Date();
+                            var h = date.getHours(); // 0 - 23
+                            var m = date.getMinutes(); // 0 - 59
+                            var s = date.getSeconds(); // 0 - 59
+                            var session = "AM";
+                            if (h == 0) {
+                                h = 12;
+                            }
+                            if (h > 12) {
+                                h = h - 12;
+                                session = "PM";
+                            }
+                            h = (h < 10) ? "0" + h : h;
+                            m = (m < 10) ? "0" + m : m;
+                            s = (s < 10) ? "0" + s : s;
+                            var time = day + "/" + month + "/" + year + "  " + h + ":" + m + ":" + s + " " + session;
+                            document.getElementById("MyClockDisplay").innerText = time;
+                            document.getElementById("MyClockDisplay").textContent = time;
+                            setTimeout(showTime, 1000);
+                        }
+                        showTime();
+                    </script>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
@@ -91,9 +138,7 @@
                             <a class="profile-pic" href="#">
                                 <img th:src="@{plugins/images/users/varun.jpg}" alt="user-img" width="36"
                                     class="img-circle">
-                                <span class="text-white font-medium"
-                                th:text="${tenNhanVien}"
-                                ></span>
+                                <span class="text-white font-medium" th:text="${tenNhanVien}"></span>
                             </a>
 
                             <a href="/logout" style="margin-right: 28px;">Đăng xuất</a>
@@ -119,56 +164,49 @@
                     <ul id="sidebarnav">
                         <!-- User Profile-->
                         <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                            th:href="@{/dashboard}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/dashboard}"
                                 aria-expanded="false">
                                 <i class="far fa-clock" aria-hidden="true"></i>
                                 <span class="hide-menu">Trang chủ</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                            th:href="@{/thanhtoan}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/thanhtoan}"
                                 aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
                                 <span class="hide-menu">Thanh toán</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                            th:href="@{canhan-page}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{canhan-page}"
                                 aria-expanded="false">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <span class="hide-menu">Cá nhân</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                            th:href="@{nhanvien-page}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{nhanvien-page}"
                                 aria-expanded="false">
                                 <i class="fas fa-address-card" aria-hidden="true"></i>
                                 <span class="hide-menu">Nhân viên</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                            th:href="@{khachhang-page}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{khachhang-page}"
                                 aria-expanded="false">
                                 <i class="fas fa-address-card" aria-hidden="true"></i>
                                 <span class="hide-menu">Khách hàng</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                            th:href="@{thucan}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{thucan}"
                                 aria-expanded="false">
                                 <i class="fas fa-utensils" aria-hidden="true"></i>
                                 <span class="hide-menu">Thức ăn</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                            th:href="@{douong-table}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{douong-table}"
                                 aria-expanded="false">
                                 <i class=" fas fa-wine-glass" aria-hidden="true"></i>
                                 <span class="hide-menu">Đồ uống</span>
@@ -220,8 +258,7 @@
                                             style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ms-auto"><span class="counter text-info"
-                                    id="soLuongNhanVien">11</span>
+                                <li class="ms-auto"><span class="counter text-info" id="soLuongNhanVien">11</span>
                                 </li>
                             </ul>
                         </div>
@@ -236,8 +273,7 @@
                                             style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ms-auto"><span class="counter text-info"
-                                    id='soluongkhachhang'>911</span>
+                                <li class="ms-auto"><span class="counter text-info" id='soluongkhachhang'>911</span>
                                 </li>
                             </ul>
                         </div>
@@ -275,9 +311,9 @@
                             <h3 class="box-title">Doanh thu</h3>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
 
-                                <li class="ms-auto"><span class="counter text-info">1000000</span>
+                                <li class="ms-auto"><span class="counter text-info" id='tongdoanhthu'>1000000</span>
                                 </li>
-                                <li class="ms-auto"><span class="counter text-info">VNĐ</span>
+                                <li class="ms-auto"><span class="counter text-info"></span>
                                 </li>
                             </ul>
                         </div>
@@ -306,24 +342,21 @@
                                 <table class="table no-wrap">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">Mã</th>
+                                            <th class="border-top-0">Mã đơn hàng</th>
                                             <th class="border-top-0">Họ và tên KH</th>
-                                            <th class="border-top-0">Số Điện thoại</th>
                                             <th class="border-top-0">Ngày đặt</th>
                                             <th class="border-top-0">Ngày giao</th>
                                             <th class="border-top-0">Tổng tiền</th>
 
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id='table-donhang-1'>
                                         <tr>
-                                            <td>1</td>
-                                            <td class="txt-oflo">Nguyễn văn Lãm</td>
                                             <td><span class="text-success">0123456789</span></td>
+                                            <td class="txt-oflo">Nguyễn văn Lãm</td>
                                             <td>1/1/2022</td>
                                             <td class="txt-oflo">1/1/2022</td>
                                             <td>100000</td>
-
                                         </tr>
 
                                     </tbody>
@@ -348,25 +381,22 @@
                                 <table class="table no-wrap">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">Mã</th>
+                                            <th class="border-top-0">Mã đơn hàng</th>
                                             <th class="border-top-0">Họ và tên KH</th>
-                                            <th class="border-top-0">Số Điện thoại</th>
                                             <th class="border-top-0">Ngày đặt</th>
                                             <th class="border-top-0">Ngày giao</th>
                                             <th class="border-top-0">Tổng tiền</th>
 
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id='table-donhang-2'>
                                         <tr>
-                                            <td>1</td>
-                                            <td class="txt-oflo">Nguyễn văn Lãm</td>
                                             <td><span class="text-success">0123456789</span></td>
+                                            <td class="txt-oflo">Nguyễn văn Lãm</td>
                                             <td>1/1/2022</td>
                                             <td class="txt-oflo">1/1/2022</td>
                                             <td>100000</td>
                                         </tr>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -394,6 +424,11 @@
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
+
+    <button id='btnclick' style="margin-left: 350px;"> Click </button>
+    <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel">
+
+    </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -415,6 +450,7 @@
     <!--chartis chart-->
     <script th:src="@{plugins/bower_components/chartist/dist/chartist.min.js}"></script>
     <script th:src="@{plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
+    <script th:src="@{js/tata.js}"></script>>
     <script th:src="@{js/pages/dashboard.js}"></script>
 </body>
 
